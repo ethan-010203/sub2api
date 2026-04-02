@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX配置 - CodexSurf 文档</title>
+    <base href="../">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/docs-layout.css">
+    <link rel="stylesheet" href="assets/docs-page.css">
+</head>
+<body>
+    <main class="doc-page" data-page="codex">
+                    <section id="codex">
+                        <div style="position:relative;" class="vp-doc _codex" data-v-39a288b8>
+                            <div>
+                                <h1 id="codex配置" tabindex="-1">CodeX配置 </h1>
+                                <p>CodeX 是 OpenAI 推出的命令行编程助手，可用于代码生成、修改、审查与日常开发协作。</p>
+                                <h2 id="安装教程" tabindex="-1">安装教程</h2>
+                                <p><strong>前置说明：</strong><strong>CodeX CLI</strong> 依赖 Node.js 环境，请先完成 <a href="pages/nodejs.html#nodejs-安装指南">Node.js 前置安装</a>，再继续下面的安装和使用步骤。</p>
+                                <h3 id="安装-codex-cli" tabindex="-1">安装 CodeX CLI </h3>
+                                <div class="language-bash vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">bash</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> i</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -g</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> @openai/codex</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">codex</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span></code></pre>
+                                </div>
+                                <h3 id="升级-codex-cli" tabindex="-1">升级 CodeX CLI </h3>
+                                <p>如果已经安装过旧版本，可以执行下面的命令升级到最新版本：</p>
+                                <div class="language-bash vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">bash</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> i</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -g</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> @openai/codex@latest</span></span>
+<span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">codex</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> --version</span></span></code></pre>
+                                </div>
+                                <hr>
+                                <h2 id="使用教程" tabindex="-1">使用教程</h2>
+                                <h3 id="方式一-手动配置" tabindex="-1">方式一：手动配置 </h3>
+                                <h4 id="windows-平台" tabindex="-1">Windows 平台 </h4>
+                                <h4 id="windows-step-1" tabindex="-1">1. 创建配置目录 </h4>
+                                <div class="language-powershell vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">powershell</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">mkdir </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">USERPROFILE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">\.codex</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">cd </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">USERPROFILE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">%</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">\.codex</span></span></code></pre>
+                                </div>
+                                <h4 id="windows-step-2" tabindex="-1">2. 创建配置文件 </h4>
+                                <p>在 <code>%USERPROFILE%\.codex\</code> 目录下创建 <code>config.toml</code> 文件，内容如下：</p>
+                                <div class="language-toml vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">toml</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_provider = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;codexsurf&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;gpt-5.4&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">review_model = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;gpt-5.4&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_reasoning_effort = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;xhigh&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">disable_response_storage = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">network_access = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;enabled&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">windows_wsl_setup_acknowledged = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_context_window = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1000000</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_auto_compact_token_limit = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">900000</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">model_providers</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">codexsurf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">name = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;codexsurf&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">base_url = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;https://codesurf.ccwu.cc&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">wire_api = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;responses&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">requires_openai_auth = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span></code></pre>
+                                </div>
+                                <h4 id="windows-step-3" tabindex="-1">3. 创建认证文件 </h4>
+                                <p>在同一目录下创建 <code>auth.json</code> 文件：</p>
+                                <p><strong>获取令牌：</strong>请先前往 <a href="pages/get-started.html">获取 API Key</a> 页面创建并复制 CodeX 专用令牌，再填入下方配置。</p>
+                                <div class="language-json vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">json</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;OPENAI_API_KEY&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;此处粘贴您的codexsurf令牌&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre>
+                                </div>
+                                <h4 id="macos-linux-平台" tabindex="-1">macOS / Linux 平台 </h4>
+                                <h4 id="unix-step-1" tabindex="-1">1. 创建配置目录 </h4>
+                                <div class="language-bash vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">bash</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkdir</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/.codex</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/.codex</span></span></code></pre>
+                                </div>
+                                <h4 id="unix-step-2" tabindex="-1">2. 创建配置文件 </h4>
+                                <p>在 <code>~/.codex/</code> 目录下创建 <code>config.toml</code> 文件，内容如下：</p>
+                                <div class="language-toml vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">toml</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_provider = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;codexsurf&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;gpt-5.4&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">review_model = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;gpt-5.4&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_reasoning_effort = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;xhigh&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">disable_response_storage = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">network_access = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;enabled&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">windows_wsl_setup_acknowledged = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_context_window = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">1000000</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">model_auto_compact_token_limit = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">900000</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">[</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">model_providers</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">.</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">codexsurf</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">]</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">name = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;codexsurf&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">base_url = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;https://codesurf.ccwu.cc&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">wire_api = </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;responses&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">requires_openai_auth = </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span></code></pre>
+                                </div>
+                                <h4 id="unix-step-3" tabindex="-1">3. 创建认证文件 </h4>
+                                <p>在同一目录下创建 <code>auth.json</code> 文件：</p>
+                                <p><strong>获取令牌：</strong>请先前往 <a href="pages/get-started.html">获取 API Key</a> 页面创建并复制 CodeX 专用令牌，再填入下方配置。</p>
+                                <div class="language-json vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">json</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span></span>
+<span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">  &quot;OPENAI_API_KEY&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;此处粘贴您的codexsurf令牌&quot;</span></span>
+<span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre>
+                                </div>
+                                <hr>
+                                <h3 id="方式二-使用-cc-switch-快速配置-推荐" tabindex="-1">方式二：使用 CC-Switch 快速配置（推荐） </h3>
+                                <p>这一种方式已单独整理到 <a href="pages/cc-switch.html#codex配置步骤">CC-Switch 使用 / Codex配置步骤</a> 页面，点击即可直接跳转查看对应配置内容。</p>
+                                <hr>
+                                <h2 id="常见问题" tabindex="-1">常见问题 </h2>
+                                <table tabindex="0">
+                                    <thead>
+                                        <tr>
+                                            <th>问题</th>
+                                            <th>解答</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>CodeX 和 Claude Code 的令牌通用吗？</td>
+                                            <td>不通用。Claude Code 使用 Claude 令牌组，CodeX 使用 CodeX 专用令牌组，请在 CodexSurf
+                                                控制台选择对应的令牌分组。</td>
+                                        </tr>
+                                        <tr>
+                                            <td>配置文件放在哪里？</td>
+                                            <td>Windows：<code>%USERPROFILE%\.codex\</code>；macOS /
+                                                Linux：<code>~/.codex/</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>API 请求失败怎么办？</td>
+                                            <td>检查 API Key 是否正确，Base URL 是否为
+                                                <code>https://codesurf.ccwu.cc</code>，以及网络是否可以正常访问 CodexSurf
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>如何切换模型？</td>
+                                            <td>修改 <code>config.toml</code> 中的 <code>model</code> 字段即可</td>
+                                        </tr>
+                                        <tr>
+                                            <td>遇到 <code>stream disconnected before completion: stream closed before response.completed</code> 怎么办？</td>
+                                            <td>优先检查当前 <code>Node.js</code> 和 <code>Codex</code> 是否已经升级到最新版本。如果版本不是最新，先升级版本后再重试；这类流式中断问题很多时候和旧版本兼容性有关。</td>
+                                        </tr>
+                                        <tr>
+                                            <td>遇到 <code>503</code> 报错怎么办？</td>
+                                            <td>优先检查当前配置里填写的模型版本是否受你的订阅支持。你可以在自己的订阅页面查看可用模型；如果在配置中填入了当前订阅不支持的模型，可能会触发 <code>503</code> 报错。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+    </main>
+    <script src="assets/docs-layout.js"></script>
+    <script src="assets/docs-page.js"></script>
+</body>
+</html>

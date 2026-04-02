@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw 配置 - CodexSurf 文档</title>
+    <base href="../">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;800&family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/docs-layout.css">
+    <link rel="stylesheet" href="assets/docs-page.css">
+</head>
+<body>
+    <main class="doc-page" data-page="openclaw">
+                    <section id="openclaw">
+                        <div style="position:relative;" class="vp-doc _openclaw" data-v-39a288b8>
+                            <div>
+                                <h1 id="openclaw-配置" tabindex="-1">OpenClaw 配置</h1>
+                                <p>OpenClaw 是一个开源（MIT 许可）的自托管网关，可将 WhatsApp、Telegram、Discord、iMessage 等聊天应用连接到 AI
+                                    编码代理，支持多代理路由、工具使用和会话记忆。更多信息请参考 <a href="https://openclaw.ai/" target="_blank"
+                                        rel="noreferrer">OpenClaw 官网</a>。本教程将指导你如何在 OpenClaw 中安装并配置 CodexSurf API。</p>
+                                <h2 id="安装教程" tabindex="-1">安装教程</h2>
+                                <p>OpenClaw 版本更迭较快，本文不再单独维护具体安装命令，以免和当前版本不一致。请直接参考 <a href="https://docs.openclaw.ai/zh-CN/install" target="_blank" rel="noreferrer">OpenClaw 官方安装教程文档</a>，按你当前系统和最新版本说明完成安装。</p>
+                                <hr>
+                                <h2 id="使用教程" tabindex="-1">使用教程</h2>
+                                <h3 id="配置-openclaw" tabindex="-1">配置 OpenClaw </h3>
+                                <h4 id="配置文件位置" tabindex="-1">配置文件位置 </h4>
+                                <p><strong>macOS / Linux：</strong></p>
+                                <div class="language-text vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">path</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">~/.openclaw/openclaw.json</span></span></code></pre>
+                                </div>
+                                <p><strong>Windows：</strong></p>
+                                <div class="language-text vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">path</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">%USERPROFILE%\.openclaw\openclaw.json</span></span></code></pre>
+                                </div>
+                                <p><strong>注意：</strong>如果文件不存在，可以手动创建。首次运行 <code>openclaw doctor</code> 也会自动生成默认配置。</p>
+                                <h4 id="codex-surf-配置示例" tabindex="-1">CodexSurf 配置示例 </h4>
+                                <p><strong>获取令牌：</strong>请先前往 <a href="pages/get-started.html">获取 API Key</a> 页面创建并复制 codexsurf 令牌，再填入下方配置。</p>
+                                <p>由于 OpenClaw 配置较为复杂，这里仅展示最小可用配置。其他配置可参考 <a href="https://docs.openclaw.ai/zh-CN" target="_blank" rel="noreferrer">OpenClaw 官方文档</a>，或前往各类媒体平台查找相关攻略。</p>
+                                <div class="language-json vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">json</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code>{
+    "gateway": {
+        "mode": "local",
+        "auth": {
+            "mode": "token",
+            "token": "此处填写你的gateway token"
+        }
+    },
+    "agents": {
+        "defaults": {
+            "workspace": "~/.openclaw/workspace",
+            "model": {
+                "primary": "codexsurf/gpt-5.4"
+            }
+        },
+        "list": [
+            {
+                "id": "main"
+            }
+        ]
+    },
+    "models": {
+        "mode": "merge",
+        "providers": {
+            "codexsurf": {
+                "baseUrl": "https://codesurf.ccwu.cc/v1",
+                "apiKey": "此处粘贴您的codexsurf令牌",
+                "api": "openai-responses",
+                "headers": {
+                    "User-Agent": "Mozilla/5.0"
+                },
+                "models": [
+                    {
+                        "id": "gpt-5.4",
+                        "name": "gpt-5.4",
+                        "reasoning": false,
+                        "input": [
+                            "text"
+                        ],
+                        "cost": {}
+                    }
+                ]
+            }
+        }
+    }
+}</code></pre>
+                                </div>
+                                <h3 id="启动并验证" tabindex="-1">启动并验证 </h3>
+                                <p>配置完成后，使用下面的命令启动 gateway：</p>
+                                <div class="language-bash vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">bash</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">openclaw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> gateway</span></span></code></pre>
+                                </div>
+                                <p>如果 gateway 已经在运行，则使用下面的命令重启：</p>
+                                <div class="language-bash vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">bash</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">openclaw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> gateway</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> restart</span></span></code></pre>
+                                </div>
+                                <p>另开一个终端，使用下面的命令测试是否能够正常回复：</p>
+                                <div class="language-bash vp-adaptive-theme"><button title="Copy Code"
+                                        class="copy"></button><span class="lang">bash</span>
+                                    <pre class="shiki shiki-themes github-light github-dark vp-code"
+                                        tabindex="0"><code><span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">openclaw</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> agent</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> --agent</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> main</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> --message</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;hi&quot;</span></span></code></pre>
+                                </div>
+                                <p>如果能正常收到回复，说明配置成功。</p>
+                                <hr>
+                                <p>OpenClaw 其余配置请直接参考 <a href="https://docs.openclaw.ai/zh-CN" target="_blank" rel="noreferrer">OpenClaw 官方文档</a>。</p>
+                                <hr>
+                                <h2 id="常见问题" tabindex="-1">常见问题</h2>
+                                <table tabindex="0">
+                                    <thead>
+                                        <tr>
+                                            <th>问题</th>
+                                            <th>解答</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>遇到 <code>401</code> 报错怎么办？</td>
+                                            <td>优先检查 <code>apiKey</code> 是否填写正确，确认当前配置中粘贴的是可用的 codexsurf 令牌。</td>
+                                        </tr>
+                                        <tr>
+                                            <td>遇到 <code>404</code> 报错怎么办？</td>
+                                            <td>优先检查 <code>"baseUrl": "https://codesurf.ccwu.cc/v1"</code> 是否填写正确，尤其注意不要漏掉末尾的 <code>/v1</code>。这一点和 CodeX 配置不同，OpenClaw 这里需要带上 <code>/v1</code>。</td>
+                                        </tr>
+                                        <tr>
+                                            <td>遇到 <code>403</code> 报错怎么办？</td>
+                                            <td>优先检查是否已经添加 <code>"headers": { "User-Agent": "Mozilla/5.0" }</code>。由于 OpenClaw 使用的协议不同，这里通常需要显式补上这个请求头。</td>
+                                        </tr>
+                                        <tr>
+                                            <td>遇到 <code>503</code> 报错怎么办？</td>
+                                            <td>优先考虑模型版本问题。你可以在自己的订阅页面查看当前订阅支持哪些模型；如果在配置中填入了当前订阅不支持的模型，也可能会触发 <code>503</code> 报错。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+    </main>
+    <script src="assets/docs-layout.js"></script>
+    <script src="assets/docs-page.js"></script>
+</body>
+</html>

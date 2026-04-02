@@ -1,0 +1,323 @@
+:root {
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --gradient-start: #70b4ff;
+    --gradient-end: #ffa8cb;
+    --main-gradient: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    --shadow-sm: 0 4px 20px rgba(112, 180, 255, 0.08);
+    --shadow-md: 0 10px 40px rgba(255, 168, 203, 0.12);
+    --border-color: rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: "SF Pro Display", "Outfit", -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.doc-page {
+    padding: 4rem;
+}
+
+section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0 0 1.5rem;
+    letter-spacing: -1.5px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 4rem 0 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(112, 180, 255, 0.15);
+}
+
+h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 2.75rem 0 1.25rem;
+}
+
+h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 0.9rem;
+}
+
+h1[tabindex="-1"]:focus,
+h2[tabindex="-1"]:focus,
+h3[tabindex="-1"]:focus,
+h4[tabindex="-1"]:focus,
+h1[tabindex="-1"]:focus-visible,
+h2[tabindex="-1"]:focus-visible,
+h3[tabindex="-1"]:focus-visible,
+h4[tabindex="-1"]:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+p,
+ul,
+ol,
+table {
+    margin: 0 0 1.5rem;
+}
+
+p,
+li,
+td,
+th {
+    color: #4b5563;
+    font-size: 1.02rem;
+}
+
+ul,
+ol {
+    padding-left: 1.4rem;
+}
+
+li + li {
+    margin-top: 0.45rem;
+}
+
+hr {
+    margin: 3rem 0;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+code {
+    font-family: "JetBrains Mono", Consolas, monospace;
+}
+
+a {
+    color: var(--gradient-start);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--gradient-end);
+}
+
+.vp-doc a,
+.conversion-box a:not(.btn-primary) {
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end)) no-repeat bottom left;
+    background-size: 0 2px;
+    transition: background-size 0.3s ease;
+}
+
+.vp-doc a:hover,
+.conversion-box a:hover:not(.btn-primary) {
+    background-size: 100% 2px;
+    color: var(--gradient-start);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--main-gradient);
+    color: #fff;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(255, 168, 203, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(112, 180, 255, 0.35);
+    color: #fff;
+}
+
+.conversion-box {
+    background: rgba(255, 255, 255, 0.6);
+    border-left: 5px solid var(--gradient-start);
+    padding: 2.2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    margin: 2.2rem 0;
+}
+
+.conversion-box ul {
+    margin-bottom: 0;
+}
+
+.vp-doc img,
+img {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    margin: 2rem 0;
+}
+
+.vp-doc div[class*="language-"] {
+    position: relative;
+    background: #1a1b26;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 1rem 0 1.8rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.vp-doc div[class*="language-"] pre {
+    background: transparent;
+    padding: 3rem 1.5rem 1.5rem;
+    overflow-x: hidden;
+    color: #fff;
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.vp-doc pre {
+    background: #1a1b26;
+    color: #fff;
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    margin: 1rem 0 1.8rem;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.vp-doc pre code,
+.vp-doc div[class*="language-"] code {
+    white-space: inherit;
+    word-break: inherit;
+    overflow-wrap: inherit;
+}
+
+.vp-doc .line {
+    white-space: inherit;
+}
+
+.vp-doc p + div[class*="language-"],
+.vp-doc p + pre {
+    margin-top: 0.85rem;
+}
+
+.vp-doc div[class*="language-"] + p,
+.vp-doc pre + p {
+    margin-top: 1.35rem;
+}
+
+.vp-doc p > strong:only-child {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.vp-doc .lang {
+    position: absolute;
+    top: 0.8rem;
+    left: 1.2rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-family: monospace;
+    text-transform: uppercase;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.copy {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+    z-index: 2;
+}
+
+.copy:hover {
+    color: var(--gradient-start);
+    border-color: rgba(112, 180, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.copy.copied {
+    background: var(--main-gradient);
+    border-color: transparent;
+    color: #fff;
+}
+
+.vp-doc table,
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.vp-doc th,
+th {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.03);
+}
+
+.vp-doc td,
+td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    vertical-align: top;
+}
+
+.vp-doc tr:last-child td,
+tr:last-child td {
+    border-bottom: 0;
+}
+
+@media (max-width: 968px) {
+    .doc-page {
+        padding: 2.5rem 1.5rem;
+    }
+
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    h2 {
+        font-size: 1.55rem;
+    }
+
+    .conversion-box {
+        padding: 1.5rem;
+    }
+}
