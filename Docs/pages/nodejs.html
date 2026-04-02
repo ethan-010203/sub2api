@@ -13,88 +13,90 @@
 <body>
     <main class="doc-page" data-page="nodejs">
         <section id="nodejs-install-guide">
-            <div class="vp-doc">
-                <h1>Node.js 前置安装</h1>
-                <p>CodeX CLI 和 OpenClaw 都依赖 Node.js 环境。开始这两类工具配置前，请先完成本页的安装步骤。</p>
+            <div style="position:relative;" class="vp-doc _nodejs" data-v-39a288b8>
+                <div>
+                    <h1 id="nodejs-前置安装" tabindex="-1">Node.js 前置安装</h1>
+                    <p>CodeX CLI 和 OpenClaw 都依赖 Node.js 运行环境。开始配置这些工具前，建议先完成本页的安装与验证步骤。</p>
 
-                <div class="conversion-box" style="border-left-color: #10b981; background: rgba(255,255,255,0.6);">
-                    <h4 style="margin-top:0;">哪些文档需要先装 Node.js</h4>
-                    <ul>
-                        <li><strong>CodeX配置：</strong> CodeX 通过 npm 安装，必须先准备好 Node.js 环境。</li>
-                        <li><strong>OpenClaw 配置：</strong> 如果你通过 npm / pnpm 安装 OpenClaw，需要 Node.js 22 或更高版本。</li>
-                    </ul>
-                </div>
+                    <div class="conversion-box" style="border-left-color: #10b981; background: rgba(255,255,255,0.6);">
+                        <h4 style="margin-top:0;">什么时候需要先安装 Node.js？</h4>
+                        <ul>
+                            <li><strong>CodeX 配置：</strong> CodeX 通过 npm 安装，因此需要本机具备可用的 Node.js 环境。</li>
+                            <li><strong>OpenClaw 配置：</strong> 如果你通过 npm 或 pnpm 安装 OpenClaw，通常建议使用较新的 Node.js 版本。</li>
+                        </ul>
+                    </div>
 
-                <h2 id="windows-安装" tabindex="-1">Windows 安装</h2>
-                <p><strong>方法一：使用官方安装包（推荐）</strong></p>
-                <ol>
-                    <li>访问 <a href="https://nodejs.org/" target="_blank" rel="noreferrer">https://nodejs.org</a></li>
-                    <li>下载 LTS 版本的 Windows Installer（`.msi`）</li>
-                    <li>运行安装程序，按默认设置完成安装</li>
-                    <li>安装完成后重新打开命令行窗口</li>
-                </ol>
+                    <h2 id="windows-安装" tabindex="-1">Windows 安装</h2>
+                    <p><strong>方式一：使用官网安装包（推荐）</strong></p>
+                    <ol>
+                        <li>访问 <a href="https://nodejs.org/" target="_blank" rel="noreferrer">https://nodejs.org/</a>。</li>
+                        <li>下载 LTS 版本的 Windows Installer（`.msi`）。</li>
+                        <li>运行安装程序，并按默认设置完成安装。</li>
+                        <li>安装完成后，重新打开终端窗口。</li>
+                    </ol>
 
-                <p><strong>方法二：使用包管理器</strong></p>
-                <p>使用 <strong>Winget</strong>：</p>
-                <div class="language-powershell vp-adaptive-theme"><span class="lang">powershell</span>
-                    <pre tabindex="0"><code>winget install OpenJS.NodeJS.LTS</code></pre>
-                </div>
-                <p>使用 <strong>Chocolatey</strong>：</p>
-                <div class="language-powershell vp-adaptive-theme"><span class="lang">powershell</span>
-                    <pre tabindex="0"><code>choco install nodejs-lts</code></pre>
-                </div>
-                <p>使用 <strong>Scoop</strong>：</p>
-                <div class="language-powershell vp-adaptive-theme"><span class="lang">powershell</span>
-                    <pre tabindex="0"><code>scoop install nodejs-lts</code></pre>
-                </div>
+                    <p><strong>方式二：使用包管理器</strong></p>
+                    <p>使用 <strong>Winget</strong>：</p>
+                    <div class="language-powershell vp-adaptive-theme"><span class="lang">powershell</span>
+                        <pre tabindex="0"><code>winget install OpenJS.NodeJS.LTS</code></pre>
+                    </div>
+                    <p>使用 <strong>Chocolatey</strong>：</p>
+                    <div class="language-powershell vp-adaptive-theme"><span class="lang">powershell</span>
+                        <pre tabindex="0"><code>choco install nodejs-lts</code></pre>
+                    </div>
+                    <p>使用 <strong>Scoop</strong>：</p>
+                    <div class="language-powershell vp-adaptive-theme"><span class="lang">powershell</span>
+                        <pre tabindex="0"><code>scoop install nodejs-lts</code></pre>
+                    </div>
 
-                <h2 id="macos-安装" tabindex="-1">macOS 安装</h2>
-                <p><strong>方法一：使用 Homebrew（推荐）</strong></p>
-                <p>如果尚未安装 Homebrew：</p>
-                <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
-                    <pre tabindex="0"><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
-                </div>
-                <p>安装 Node.js：</p>
-                <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
-                    <pre tabindex="0"><code>brew install node</code></pre>
-                </div>
+                    <h2 id="macos-安装" tabindex="-1">macOS 安装</h2>
+                    <p><strong>方式一：使用 Homebrew（推荐）</strong></p>
+                    <p>如果尚未安装 Homebrew，可以先执行：</p>
+                    <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
+                        <pre tabindex="0"><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                    </div>
+                    <p>然后安装 Node.js：</p>
+                    <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
+                        <pre tabindex="0"><code>brew install node</code></pre>
+                    </div>
 
-                <p><strong>方法二：使用官方安装包</strong></p>
-                <ol>
-                    <li>访问 <a href="https://nodejs.org/" target="_blank" rel="noreferrer">https://nodejs.org</a></li>
-                    <li>下载 LTS 版本的 macOS Installer（`.pkg`）</li>
-                    <li>运行安装程序，按默认设置完成安装</li>
-                </ol>
+                    <p><strong>方式二：使用官网安装包</strong></p>
+                    <ol>
+                        <li>访问 <a href="https://nodejs.org/" target="_blank" rel="noreferrer">https://nodejs.org/</a>。</li>
+                        <li>下载 LTS 版本的 macOS Installer（`.pkg`）。</li>
+                        <li>运行安装程序，并按默认设置完成安装。</li>
+                    </ol>
 
-                <h2 id="linux-安装" tabindex="-1">Linux 安装</h2>
-                <p><strong>Ubuntu / Debian：</strong></p>
-                <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
-                    <pre tabindex="0"><code>sudo apt update
+                    <h2 id="linux-安装" tabindex="-1">Linux 安装</h2>
+                    <p><strong>Ubuntu / Debian</strong></p>
+                    <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
+                        <pre tabindex="0"><code>sudo apt update
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs</code></pre>
-                </div>
+                    </div>
 
-                <p><strong>CentOS / RHEL / Fedora：</strong></p>
-                <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
-                    <pre tabindex="0"><code>sudo dnf install nodejs npm
-# 或者
-sudo yum install nodejs npm</code></pre>
-                </div>
+                    <p><strong>CentOS / RHEL / Fedora</strong></p>
+                    <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
+                        <pre tabindex="0"><code>sudo dnf install nodejs npm
+# 或 sudo yum install nodejs npm</code></pre>
+                    </div>
 
-                <p><strong>Arch Linux：</strong></p>
-                <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
-                    <pre tabindex="0"><code>sudo pacman -S nodejs npm</code></pre>
-                </div>
+                    <p><strong>Arch Linux</strong></p>
+                    <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
+                        <pre tabindex="0"><code>sudo pacman -S nodejs npm</code></pre>
+                    </div>
 
-                <h2 id="nodejs-验证安装" tabindex="-1">验证安装</h2>
-                <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
-                    <pre tabindex="0"><code>node --version
+                    <h2 id="验证安装" tabindex="-1">验证安装</h2>
+                    <p>安装完成后，在终端中执行以下命令确认版本信息已经正常输出：</p>
+                    <div class="language-bash vp-adaptive-theme"><span class="lang">bash</span>
+                        <pre tabindex="0"><code>node --version
 npm --version</code></pre>
-                </div>
+                    </div>
 
-                <div class="conversion-box" style="border-left-color: #10b981; background: rgba(255,255,255,0.6);">
-                    <h4 style="margin-top:0;">版本建议</h4>
-                    <p>CodeX 建议使用 Node.js LTS。OpenClaw 如果通过 npm / pnpm 安装，建议使用 Node.js 22 或更高版本。</p>
+                    <div class="conversion-box" style="border-left-color: #10b981; background: rgba(255,255,255,0.6);">
+                        <h4 style="margin-top:0;">版本建议</h4>
+                        <p>如果你主要使用 CodeX，优先选择 Node.js 的 LTS 版本即可；如果你准备安装较新的 OpenClaw 版本，也建议尽量保持 Node.js 版本较新，避免依赖兼容问题。</p>
+                    </div>
                 </div>
             </div>
         </section>

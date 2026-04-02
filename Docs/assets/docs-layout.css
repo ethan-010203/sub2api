@@ -28,6 +28,11 @@ body {
     overflow-x: hidden;
 }
 
+html {
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
 .ambient-bg {
     position: fixed;
     inset: 0;
@@ -258,6 +263,10 @@ body {
     transform: translateX(4px);
 }
 
+.nav-link.is-loading {
+    opacity: 0.72;
+}
+
 .floating-btn {
     position: fixed;
     top: 1.5rem;
@@ -281,6 +290,50 @@ body {
     transform: translateY(-4px) scale(1.03);
     box-shadow: 0 15px 35px rgba(112, 180, 255, 0.35);
     color: #fff;
+}
+
+.docs-loading-indicator {
+    position: fixed;
+    top: 1.6rem;
+    left: 50%;
+    z-index: 1100;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid rgba(112, 180, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateX(-50%) translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.docs-loading-spinner {
+    width: 0.72rem;
+    height: 0.72rem;
+    border: 2px solid rgba(112, 180, 255, 0.18);
+    border-top-color: var(--gradient-start);
+    border-radius: 50%;
+    animation: docs-spin 0.8s linear infinite;
+}
+
+@keyframes docs-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+body.docs-loading .docs-loading-indicator {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 .main-content {
@@ -329,5 +382,9 @@ body {
         right: 1rem;
         left: 1rem;
         justify-content: center;
+    }
+
+    .docs-loading-indicator {
+        top: 5rem;
     }
 }

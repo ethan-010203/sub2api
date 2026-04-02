@@ -1,20 +1,48 @@
 const KNOWN_PAGES = new Set(["nodejs", "intro", "get-started", "codex", "cc-switch", "openclaw"]);
 
-function findTarget(targetId) {
+function findTarget(targetId, root = document) {
     if (!targetId) {
         return null;
     }
 
     try {
-        return document.querySelector(`#${CSS.escape(targetId)}`);
+        return root.querySelector(`#${CSS.escape(targetId)}`);
     } catch (error) {
-        return Array.from(document.querySelectorAll("[id]"))
+        return Array.from(root.querySelectorAll("[id]"))
             .find(node => node.id === targetId) || null;
     }
 }
 
-function bindCopyButtons() {
-    document.querySelectorAll("pre").forEach(pre => {
+function legacyCopyText(text) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "true");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    textarea.style.pointerEvents = "none";
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+        document.execCommand("copy");
+        return Promise.resolve();
+    } catch (error) {
+        return Promise.reject(error);
+    } finally {
+        textarea.remove();
+    }
+}
+
+function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+    }
+
+    return legacyCopyText(text);
+}
+
+function bindCopyButtons(root = document) {
+    root.querySelectorAll("pre").forEach(pre => {
         const container = pre.closest(".vp-adaptive-theme") || pre.parentElement;
         if (!container || container.querySelector(".copy")) {
             return;
@@ -24,7 +52,8 @@ function bindCopyButtons() {
         btn.className = "copy";
         btn.type = "button";
         btn.textContent = "复制";
-        btn.setAttribute("aria-label", "Copy Code");
+        btn.setAttribute("aria-label", "复制代码");
+        btn.setAttribute("title", "复制代码");
 
         if (container === pre) {
             pre.style.position = "relative";
@@ -37,7 +66,7 @@ function bindCopyButtons() {
         }
     });
 
-    document.querySelectorAll(".copy").forEach(btn => {
+    root.querySelectorAll(".copy").forEach(btn => {
         if (btn.dataset.bound === "true") {
             return;
         }
@@ -53,11 +82,16 @@ function bindCopyButtons() {
                 return;
             }
 
-            navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+            copyText(codeBlock.innerText).then(() => {
                 btn.classList.add("copied");
                 btn.textContent = "已复制";
                 setTimeout(() => {
                     btn.classList.remove("copied");
+                    btn.textContent = "复制";
+                }, 2000);
+            }).catch(() => {
+                btn.textContent = "复制失败";
+                setTimeout(() => {
                     btn.textContent = "复制";
                 }, 2000);
             });
@@ -65,8 +99,8 @@ function bindCopyButtons() {
     });
 }
 
-function bindAnchors() {
-    document.querySelectorAll("a[href]").forEach(link => {
+function bindAnchors(root = document) {
+    root.querySelectorAll("a[href]").forEach(link => {
         if (link.dataset.anchorBound === "true") {
             return;
         }
@@ -83,7 +117,7 @@ function bindAnchors() {
                 return;
             }
 
-            const target = findTarget(targetId);
+            const target = findTarget(targetId, root);
             if (target) {
                 return;
             }
@@ -99,7 +133,13 @@ function bindAnchors() {
     });
 }
 
+function initDocsPage(root = document) {
+    bindCopyButtons(root);
+    bindAnchors(root);
+}
+
+window.initDocsPage = initDocsPage;
+
 document.addEventListener("DOMContentLoaded", () => {
-    bindCopyButtons();
-    bindAnchors();
+    initDocsPage(document);
 });

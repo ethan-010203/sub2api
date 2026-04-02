@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -12,21 +12,36 @@
 </head>
 <body>
     <main class="doc-page" data-page="get-started">
-                    <section id="get-started">
-                        <h2>1. 快速获取 API 密钥</h2>
-                        <p>要开始调用我们的 GPT 服务，您需要首先在控制台生成专属的 API 密钥 (Auth Token)。</p>
-                        <p>访问 <a href="https://codesurf.ccwu.cc/" target="_blank">CodexSurf 控制台</a> 进行以下操作：</p>
-                        <ul>
-                            <li>点击 <strong>「API 密钥」-「创建密钥」</strong></li>
-                            <li><strong>名称:</strong> 随便填写方便自己区分即可</li>
-                            <li><strong>令牌分组:</strong> 根据实际需要选择（必填项，不能留空）</li>
-                            <li><strong>额度建议:</strong> 设置为无限额度</li>
-                            <li>其他选项保持默认</li>
-                        </ul>
-                        <p style="margin-top: 1rem; color: #db2777;">*注意：生成的 <code>sk-xxxxxx</code>
-                            格式字符串就是您的专属密钥，请妥善保管，切勿泄露给他人。</p>
-                    </section>
+        <section id="get-started">
+            <div style="position:relative;" class="vp-doc _get-started" data-v-39a288b8>
+                <div>
+                    <h1 id="获取-api-key" tabindex="-1">获取 API Key</h1>
+                    <p>要开始调用 CodexSurf 的 GPT 服务，第一步就是在控制台创建你的专属 API Key。整个流程很短，通常几分钟内就可以完成。</p>
 
+                    <div class="conversion-box">
+                        <h3>开始前提醒</h3>
+                        <ul>
+                            <li>生成后的 <code>sk-xxxxxx</code> 格式字符串就是你的实际调用密钥，请妥善保存。</li>
+                            <li>建议按工具用途区分不同令牌，后续排查问题和管理额度会更方便。</li>
+                            <li>如果你准备给 CodeX 使用，请确认令牌分组选择的是对应的专用分组。</li>
+                        </ul>
+                    </div>
+
+                    <h2 id="创建步骤" tabindex="-1">创建步骤</h2>
+                    <p>访问 <a href="https://codesurf.ccwu.cc/" target="_blank" rel="noreferrer">CodexSurf 控制台</a>，然后按下面的顺序创建：</p>
+                    <ol>
+                        <li>进入 <strong>「API 密钥」</strong> 页面，点击 <strong>「创建密钥」</strong>。</li>
+                        <li><strong>名称：</strong> 按你的使用场景填写，方便后续区分。</li>
+                        <li><strong>令牌分组：</strong> 根据实际用途选择，属于必填项，不能留空。</li>
+                        <li><strong>额度建议：</strong> 如果你需要长期使用，通常建议设置为无限额度。</li>
+                        <li>其余选项保持默认即可，确认后完成创建。</li>
+                    </ol>
+
+                    <h2 id="使用建议" tabindex="-1">使用建议</h2>
+                    <p>创建完成后，建议立刻复制并保存到密码管理器或本地安全位置。后续你可以继续前往 <a href="pages/codex.html">CodeX 配置</a>、<a href="pages/cc-switch.html">CC-Switch 使用</a> 或 <a href="pages/openclaw.html">OpenClaw 配置</a> 页面，将该令牌填入对应工具配置中。</p>
+                </div>
+            </div>
+        </section>
     </main>
     <script src="assets/docs-layout.js"></script>
     <script src="assets/docs-page.js"></script>

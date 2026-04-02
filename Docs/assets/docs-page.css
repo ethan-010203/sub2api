@@ -28,6 +28,11 @@ body {
 
 .doc-page {
     padding: 4rem;
+    opacity: 0;
+}
+
+body.docs-layout-ready .doc-page {
+    opacity: 1;
 }
 
 section {
