@@ -27,7 +27,7 @@ const DOCS_PAGES = {
     openclaw: {
         title: "OpenClaw 配置",
         href: "pages/openclaw.html",
-        icon: '<span class="nav-emoji">🦞</span>'
+        icon: '<i class="fas fa-paw"></i>'
     }
 };
 
@@ -93,9 +93,35 @@ function buildFloatingButton() {
     const link = document.createElement("a");
     link.href = "https://codesurf.ccwu.cc/";
     link.target = "_blank";
+    link.rel = "noreferrer";
     link.className = "floating-btn";
     link.innerHTML = '<i class="fas fa-external-link-alt"></i> CodexSurf 主站';
     return link;
+}
+
+function bindSidebarPrefetch(root) {
+    root.querySelectorAll('a[href^="pages/"]').forEach(link => {
+        const rawHref = link.getAttribute("href");
+        if (!rawHref) {
+            return;
+        }
+
+        const prefetch = () => {
+            const absoluteHref = new URL(rawHref, document.baseURI).href;
+            if (document.head.querySelector(`link[rel="prefetch"][href="${absoluteHref}"]`)) {
+                return;
+            }
+
+            const prefetchLink = document.createElement("link");
+            prefetchLink.rel = "prefetch";
+            prefetchLink.href = absoluteHref;
+            document.head.appendChild(prefetchLink);
+        };
+
+        link.addEventListener("mouseenter", prefetch, { once: true });
+        link.addEventListener("focus", prefetch, { once: true });
+        link.addEventListener("touchstart", prefetch, { once: true });
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -131,4 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
     layout.appendChild(sidebar);
     layout.appendChild(main);
     wrap.appendChild(layout);
+
+    bindSidebarPrefetch(sidebar);
 });

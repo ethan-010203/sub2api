@@ -3,13 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodexSurf 文档</title>
-    <meta http-equiv="refresh" content="0; url=pages/intro.html">
+    <title>CodexSurf Docs Gateway</title>
+    <meta name="description" content="Entry page for CodexSurf documentation. Redirects to the docs home page or a requested section.">
+    <meta name="theme-color" content="#0f172a">
     <script>
-        window.location.replace("pages/intro.html");
+        (function () {
+            const pageMap = Object.freeze({
+                nodejs: "pages/nodejs.html",
+                intro: "pages/intro.html",
+                "get-started": "pages/get-started.html",
+                codex: "pages/codex.html",
+                "cc-switch": "pages/cc-switch.html",
+                openclaw: "pages/openclaw.html"
+            });
+
+            function safeDecodeHash(value) {
+                if (!value) {
+                    return "";
+                }
+
+                try {
+                    return decodeURIComponent(value);
+                } catch (error) {
+                    return value;
+                }
+            }
+
+            function resolveTarget(hashValue) {
+                if (!hashValue) {
+                    return {
+                        path: pageMap.intro,
+                        hash: ""
+                    };
+                }
+
+                if (pageMap[hashValue]) {
+                    return {
+                        path: pageMap[hashValue],
+                        hash: ""
+                    };
+                }
+
+                return {
+                    path: pageMap.intro,
+                    hash: `#${encodeURIComponent(hashValue)}`
+                };
+            }
+
+            const rawHash = window.location.hash.slice(1).trim();
+            const decodedHash = safeDecodeHash(rawHash);
+            const target = resolveTarget(decodedHash);
+            const nextUrl = new URL(target.path, window.location.href);
+
+            if (window.location.search) {
+                nextUrl.search = window.location.search;
+            }
+
+            if (target.hash) {
+                nextUrl.hash = target.hash;
+            }
+
+            window.location.replace(nextUrl.href);
+        }());
     </script>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+        }
+
+        .redirect-card {
+            width: min(100%, 520px);
+            padding: 28px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+        }
+
+        .redirect-card h1 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+        }
+
+        .redirect-card p {
+            margin: 0;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .redirect-card a {
+            color: #2563eb;
+        }
+    </style>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=pages/intro.html">
+    </noscript>
 </head>
 <body>
-    <p>正在跳转到文档首页...</p>
+    <main class="redirect-card" role="status" aria-live="polite">
+        <h1>Opening CodexSurf Docs</h1>
+        <p>If the redirect does not start automatically, open the <a href="pages/intro.html">docs home page</a>.</p>
+    </main>
 </body>
 </html>
